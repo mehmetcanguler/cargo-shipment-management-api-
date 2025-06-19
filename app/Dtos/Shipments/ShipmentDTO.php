@@ -37,7 +37,7 @@ class ShipmentDTO extends BaseDTO
             dimensions: new Dimensions(width: $data['dimensions']['width'] ?? 0, length: $data['dimensions']['length'] ?? 0, height: $data['dimensions']['height'] ?? 0),
             shipping_company: $data['shipping_company'] ?? '',
             tracking_number: $data['tracking_number'] ?? '',
-            status: $data['status']
+            status: $data['status'] ?? ShipmentStatus::PENDING
         );
     }
 
