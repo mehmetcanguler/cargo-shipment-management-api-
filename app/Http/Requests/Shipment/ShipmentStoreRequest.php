@@ -32,7 +32,7 @@ class ShipmentStoreRequest extends FormRequest
             'dimensions.width' => 'required|numeric',
             'dimensions.height' => 'required|numeric',
             'shipping_company' => 'required|string',
-            'tracking_number' => 'required|string',
+            'tracking_number' => 'required|string:unique:shipments,tracking_number',
         ];
     }
 }

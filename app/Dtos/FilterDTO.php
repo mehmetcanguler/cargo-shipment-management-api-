@@ -32,4 +32,11 @@ class FilterDTO extends BaseDTO
             'per_page' => $this->per_page,
         ];
     }
+
+    protected function searchStrReplace(string $search): string
+    {
+        $search = str_replace(['\\', '%', '_'], ['\\\\', '\\%', '\\_'], $search);
+
+        return $search;
+    }
 }
