@@ -18,7 +18,7 @@ class UserDTO extends BaseDTO
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function fromRequest(array $data): static
     {

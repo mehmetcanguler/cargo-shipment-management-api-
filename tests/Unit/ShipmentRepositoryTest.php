@@ -14,14 +14,15 @@ class ShipmentRepositoryTest extends TestCase
     use RefreshDatabase;
 
     protected ShipmentReadRepository $readRepo;
+
     protected ShipmentWriteRepository $writeRepo;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->readRepo = new ShipmentReadRepository(new Shipment());
-        $this->writeRepo = new ShipmentWriteRepository(new Shipment());
+        $this->readRepo = new ShipmentReadRepository(new Shipment);
+        $this->writeRepo = new ShipmentWriteRepository(new Shipment);
     }
 
     public function test_add_creates_new_shipment()
@@ -34,7 +35,7 @@ class ShipmentRepositoryTest extends TestCase
             'dimensions' => json_encode(['width' => 10, 'length' => 20, 'height' => 5]),
             'shipping_company' => 'DHL',
             'tracking_number' => 'TR123456',
-            'status' => ShipmentStatus::PENDING
+            'status' => ShipmentStatus::PENDING,
         ];
 
         $shipment = $this->writeRepo->add($data);

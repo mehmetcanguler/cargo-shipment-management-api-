@@ -17,7 +17,7 @@ class EnumResource extends JsonResource
         return [
             'name' => $this->name,
             'value' => $this->value,
-            'label' => $this->label()
+            'label' => $this->label(),
         ];
     }
 }

@@ -12,15 +12,13 @@ use App\Http\Requests\Shipment\ShippingPriceCalculationRequest;
 use App\Http\Resources\ShipmentResource;
 use App\Support\Helpers\ApiResponse;
 use App\ValueObjects\Dimensions;
-use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
 {
     public function __construct(
         private ShipmentServiceInterface $shipmentService
-    ) {
+    ) {}
 
-    }
     /**
      * Display a listing of the resource.
      */

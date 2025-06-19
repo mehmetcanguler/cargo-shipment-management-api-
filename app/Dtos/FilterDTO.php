@@ -8,28 +8,28 @@ class FilterDTO extends BaseDTO
      * Create a new class instance.
      */
     public function __construct(
-        public int $perPage = 10
+        public int $per_page = 10
     ) {
         //
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function fromRequest(array $data): static
     {
         return new self(
-            perPage: $data['perPage'] ?? 10
+            per_page: $data['per_page'] ?? 10
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function toArray(): array
     {
         return [
-            'perPage' => $this->perPage,
+            'per_page' => $this->per_page,
         ];
     }
 }

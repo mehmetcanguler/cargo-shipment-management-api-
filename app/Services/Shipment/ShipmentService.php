@@ -14,7 +14,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ShipmentService extends BaseService implements ShipmentServiceInterface
 {
-
     public function __construct(
         ShipmentReadRepositoryInterface $readRepository,
         ShipmentWriteRepositoryInterface $writeRepository
@@ -26,18 +25,18 @@ class ShipmentService extends BaseService implements ShipmentServiceInterface
     }
 
     /**
-     * @param ShipmentFilterDTO $filter
+     * @param  ShipmentFilterDTO  $filter
      */
     public function getAll(FilterDTO|ShipmentFilterDTO $filterDTO): LengthAwarePaginator
     {
         return $this->readRepository->paginate(function (Builder $query) use ($filterDTO) {
             if ($filterDTO->search) {
                 $query->where(function (Builder $query) use ($filterDTO) {
-                    $query->where('customer_name', 'like', '%' . $filterDTO->search . '%')
-                        ->orWhere('address', 'like', '%' . $filterDTO->search . '%')
-                        ->orWhere('country', 'like', '%' . $filterDTO->search . '%')
-                        ->orWhere('tracking_number', 'like', '%' . $filterDTO->search . '%')
-                        ->orWhere('shipping_company', 'like', '%' . $filterDTO->search . '%');
+                    $query->where('customer_name', 'like', '%'.$filterDTO->search.'%')
+                        ->orWhere('address', 'like', '%'.$filterDTO->search.'%')
+                        ->orWhere('country', 'like', '%'.$filterDTO->search.'%')
+                        ->orWhere('tracking_number', 'like', '%'.$filterDTO->search.'%')
+                        ->orWhere('shipping_company', 'like', '%'.$filterDTO->search.'%');
                 });
             }
             if ($filterDTO->status) {
@@ -47,15 +46,17 @@ class ShipmentService extends BaseService implements ShipmentServiceInterface
                 $query->where('weight', $filterDTO->weight);
             }
 
-            if ($filterDTO->trackingNumber) {
-                $query->where('tracking_number', $filterDTO->trackingNumber);
+            if ($filterDTO->tracking_number) {
+                $query->where('tracking_number', $filterDTO->tracking_number);
             }
             $query->orderBy('created_at', 'desc');
-        }, $filterDTO->perPage);
+        }, $filterDTO->per_page);
     }
 
-    public function shippingPriceCalculation(Dimensions $dimensions) : Dimensions
+    public function shippingPriceCalculation(Dimensions $dimensions): Dimensions
     {
+        $dimensions->desi = $dimensions->desi();
+
         return $dimensions;
     }
 }

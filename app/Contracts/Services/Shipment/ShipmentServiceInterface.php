@@ -7,5 +7,5 @@ use App\ValueObjects\Dimensions;
 
 interface ShipmentServiceInterface extends ServiceInterface
 {
-     public function shippingPriceCalculation(Dimensions $dimensions) : Dimensions;
+    public function shippingPriceCalculation(Dimensions $dimensions): Dimensions;
 }

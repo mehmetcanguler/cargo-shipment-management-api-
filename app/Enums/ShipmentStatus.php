@@ -13,14 +13,13 @@ enum ShipmentStatus: int implements LabeledEnum
     case DELIVERED = 3;
     case CANCELLED = 4;
 
-
     public function label(): string
     {
         return match ($this) {
-            self::PENDING => 'Hazırlanıyor',
-            self::SHIPPED => 'Kargoya Verildi',
-            self::DELIVERED => 'Teslim Edildi',
-            self::CANCELLED => 'İptal Edildi',
+            self::PENDING => trans('enum.pending'),
+            self::SHIPPED => trans('enum.shipped'),
+            self::DELIVERED => trans('enum.delivered'),
+            self::CANCELLED => trans('enum.cancelled'),
         };
     }
 }

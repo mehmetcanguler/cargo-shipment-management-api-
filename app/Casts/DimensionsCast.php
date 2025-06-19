@@ -53,5 +53,4 @@ class DimensionsCast implements CastsAttributes
             ]),
         ];
     }
-
 }

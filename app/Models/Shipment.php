@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipment extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'customer_name',
         'address',
@@ -31,11 +32,11 @@ class Shipment extends Model
             'dimensions' => DimensionsCast::class,
             'shipping_company' => 'string',
             'tracking_number' => 'string',
-            'status' => ShipmentStatus::class
+            'status' => ShipmentStatus::class,
         ];
     }
 
     protected $attributes = [
-        'status' => ShipmentStatus::PENDING
+        'status' => ShipmentStatus::PENDING,
     ];
 }

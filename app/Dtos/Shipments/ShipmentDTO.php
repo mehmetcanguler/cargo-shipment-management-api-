@@ -12,49 +12,49 @@ class ShipmentDTO extends BaseDTO
      * Create a new class instance.
      */
     public function __construct(
-        public string $customerName,
+        public string $customer_name,
         public string $address,
         public string $country,
         public float $weight,
         public Dimensions $dimensions,
-        public string $shippingCompany,
-        public string $trackingNumber,
+        public string $shipping_company,
+        public string $tracking_number,
         public ?ShipmentStatus $status = null
     ) {
         //
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function fromRequest(array $data): static
     {
         return new self(
-            customerName: $data['customer_name'] ?? '',
+            customer_name: $data['customer_name'] ?? '',
             address: $data['address'] ?? '',
             country: $data['country'] ?? '',
             weight: $data['weight'] ?? 0,
             dimensions: new Dimensions(width: $data['dimensions']['width'] ?? 0, length: $data['dimensions']['length'] ?? 0, height: $data['dimensions']['height'] ?? 0),
-            shippingCompany: $data['shipping_company'] ?? '',
-            trackingNumber: $data['tracking_number'] ?? '',
+            shipping_company: $data['shipping_company'] ?? '',
+            tracking_number: $data['tracking_number'] ?? '',
             status: $data['status']
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function toArray(): array
     {
         return [
-            'customer_name' => $this->customerName,
+            'customer_name' => $this->customer_name,
             'address' => $this->address,
             'country' => $this->country,
             'weight' => $this->weight,
             'dimensions' => $this->dimensions,
-            'shipping_company' => $this->shippingCompany,
-            'tracking_number' => $this->trackingNumber,
-            'status' => $this->status
+            'shipping_company' => $this->shipping_company,
+            'tracking_number' => $this->tracking_number,
+            'status' => $this->status,
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Contracts\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface WriteRepositoryInterface 
+interface WriteRepositoryInterface
 {
     public function add(array $data): Model;
 

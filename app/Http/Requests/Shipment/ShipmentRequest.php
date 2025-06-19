@@ -27,7 +27,7 @@ class ShipmentRequest extends FormRequest
             'search' => 'string|nullable',
             'status' => [
                 'nullable',
-                new Enum(ShipmentStatus::class)
+                new Enum(ShipmentStatus::class),
             ],
             'per_page' => 'integer|nullable',
             'weight' => 'integer|nullable',

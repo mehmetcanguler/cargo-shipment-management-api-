@@ -11,7 +11,6 @@ use App\Repositories\ReadRepository;
  */
 class UserReadRepository extends ReadRepository implements UserReadRepositoryInterface
 {
-    
     public function __construct(User $user)
     {
         parent::__construct(model: $user);

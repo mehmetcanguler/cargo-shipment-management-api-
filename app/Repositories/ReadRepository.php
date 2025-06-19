@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 abstract class ReadRepository implements ReadRepositoryInterface
 {
     protected Model $model;
+
     public function __construct(Model $model)
     {
         $this->model = $model;
@@ -18,14 +19,12 @@ abstract class ReadRepository implements ReadRepositoryInterface
         return $this->model->all();
     }
 
-
-    public function find(int|string $id): Model|null
+    public function find(int|string $id): ?Model
     {
         return $this->model->find($id);
     }
 
-
-    public function findWhere(array|callable $conditions): Model|null
+    public function findWhere(array|callable $conditions): ?Model
     {
         $query = $this->model->newQuery();
 
@@ -38,19 +37,17 @@ abstract class ReadRepository implements ReadRepositoryInterface
         return $query->first();
     }
 
-
-    public function paginate(callable|null $callback = null, int $perPage = 10): \Illuminate\Pagination\LengthAwarePaginator
+    public function paginate(?callable $callback = null, int $per_page = 10): \Illuminate\Pagination\LengthAwarePaginator
     {
         $query = $this->model->newQuery();
         if ($callback) {
             $callback($query);
         }
 
-        return $query->paginate($perPage);
+        return $query->paginate($per_page);
     }
 
-
-    public function query(callable|null $callback = null): \Illuminate\Database\Eloquent\Builder
+    public function query(?callable $callback = null): \Illuminate\Database\Eloquent\Builder
     {
         $query = $this->model->newQuery();
 

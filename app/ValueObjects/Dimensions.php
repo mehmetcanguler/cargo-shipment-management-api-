@@ -5,13 +5,12 @@ namespace App\ValueObjects;
 class Dimensions extends BaseValueObject
 {
     public float $desi;
+
     public function __construct(
         public float|int $width,
         public float|int $height,
         public float|int $length
-    ) {
-        $this->desi = $this->desi();
-    }
+    ) {}
 
     public function toArray(): array
     {
@@ -35,6 +34,7 @@ class Dimensions extends BaseValueObject
     {
         return $this->width * $this->height * $this->length;
     }
+
     public function desi(): float
     {
         return round($this->volume() / 5000, 2);

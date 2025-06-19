@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\ShipmentStatus;
-use App\ValueObjects\Dimensions;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

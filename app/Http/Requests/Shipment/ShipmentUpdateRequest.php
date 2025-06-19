@@ -36,8 +36,8 @@ class ShipmentUpdateRequest extends FormRequest
             'tracking_number' => 'required|string',
             'status' => [
                 'required',
-                new Enum(ShipmentStatus::class)
-            ]
+                new Enum(ShipmentStatus::class),
+            ],
         ];
     }
 }

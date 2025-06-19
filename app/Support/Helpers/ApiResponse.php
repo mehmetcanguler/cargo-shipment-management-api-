@@ -16,6 +16,7 @@ class ApiResponse
             'message' => $message ?? trans('apiresponse.success_message'),
         ], $statusCode);
     }
+
     public static function item(array|JsonResource|null|BaseValueObject $data = null, ?string $message = null, int $statusCode = 200)
     {
         return response()->json([
@@ -26,17 +27,17 @@ class ApiResponse
         ], $statusCode);
     }
 
-
-    public static function error(string $message = null, int $statusCode = 400, array $errors = [])
+    public static function error(?string $message = null, int $statusCode = 400, array $errors = [])
     {
         if (empty($errors)) {
             $errors = [$message];
         }
+
         return response()->json([
             'status' => false,
             'status_code' => $statusCode,
             'message' => $message ?? trans('apiresponse.error_message'),
-            'errors' => $errors
+            'errors' => $errors,
         ], $statusCode);
     }
 
@@ -55,7 +56,6 @@ class ApiResponse
         return self::success($message ?? trans('apiresponse.deleted_message'));
     }
 
-
     public static function collection(ResourceCollection $collection, ?string $message = null)
     {
         $return = [
@@ -65,7 +65,7 @@ class ApiResponse
             'data' => $collection->response()->getData()->data,
         ];
 
-        if (!empty($collection->response()->getData()->meta)) {
+        if (! empty($collection->response()->getData()->meta)) {
             $meta = $collection->response()->getData()->meta;
             $return['meta'] = $meta;
             unset($meta->links);

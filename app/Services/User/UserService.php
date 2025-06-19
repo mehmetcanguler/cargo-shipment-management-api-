@@ -15,5 +15,4 @@ class UserService extends BaseService implements UserServiceInterface
     ) {
         parent::__construct($readRepository, $writeRepository);
     }
-
 }

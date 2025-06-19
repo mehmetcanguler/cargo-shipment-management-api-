@@ -4,9 +4,6 @@ namespace Database\Seeders;
 
 use App\Contracts\Services\User\UserServiceInterface;
 use App\Dtos\User\UserDTO;
-use App\Models\User;
-use App\Repositories\User\UserWriteRepository;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder

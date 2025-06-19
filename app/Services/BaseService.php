@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Contracts\Repositories\ReadRepositoryInterface;
 use App\Contracts\Repositories\WriteRepositoryInterface;
 use App\Contracts\Services\ServiceInterface;
@@ -9,11 +10,11 @@ use App\Dtos\FilterDTO;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 
 class BaseService implements ServiceInterface
 {
     protected ReadRepositoryInterface $readRepository;
+
     protected WriteRepositoryInterface $writeRepository;
 
     public function __construct(
@@ -28,15 +29,16 @@ class BaseService implements ServiceInterface
     {
         return $this->readRepository->paginate(function ($query) {
             $query->orderBy('created_at', 'desc');
-        }, $filterDTO->perPage);
+        }, $filterDTO->per_page);
     }
 
     public function getById(int|string $id): ?Model
     {
         $model = $this->readRepository->find($id);
-        if (!$model) {
+        if (! $model) {
             throw new ModelNotFoundException('Model not found');
         }
+
         return $model;
     }
 
@@ -49,7 +51,7 @@ class BaseService implements ServiceInterface
     {
         $model = $this->getById($id);
 
-        if (!$model) {
+        if (! $model) {
             return null;
         }
 
@@ -60,7 +62,7 @@ class BaseService implements ServiceInterface
     {
         $model = $this->getById($id);
 
-        if (!$model) {
+        if (! $model) {
             return false;
         }
 

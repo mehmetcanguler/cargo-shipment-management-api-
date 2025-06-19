@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Database\Seeders\UserSeeder;
 use Illuminate\Console\Command;
 
 class AppStartCommand extends Command
@@ -27,11 +26,11 @@ class AppStartCommand extends Command
     public function handle()
     {
         $this->call('key:generate');
-        $this->info("Uygulama başlatılıyor");
-        $this->info("İlk önce veri tabanı tabloları oluşturuluyor. ve test kullanıcısı oluşturulacak");
+        $this->info('Uygulama başlatılıyor');
+        $this->info('İlk önce veri tabanı tabloları oluşturuluyor. ve test kullanıcısı oluşturulacak');
         $this->call('migrate', ['--seed' => true]);
         $this->info('Veri tabanı tabloları ve test kullanıcısı oluşturuldu');
-        $this->info("email: admin@cargoshipmanagement.com password: password");
+        $this->info('email: admin@cargoshipmanagement.com password: password');
         $this->info('Uygulama başlatıldı');
         $this->call('serve');
     }

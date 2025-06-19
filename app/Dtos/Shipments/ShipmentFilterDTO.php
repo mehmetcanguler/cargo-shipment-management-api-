@@ -2,10 +2,8 @@
 
 namespace App\Dtos\Shipments;
 
-use App\Dtos\BaseDTO;
 use App\Dtos\FilterDTO;
 use App\Enums\ShipmentStatus;
-
 
 class ShipmentFilterDTO extends FilterDTO
 {
@@ -16,38 +14,38 @@ class ShipmentFilterDTO extends FilterDTO
     public function __construct(
         public ?string $search = null,
         public ?ShipmentStatus $status = null,
-        public int $perPage = 10,
+        public int $per_page = 10,
         public ?int $weight = null,
-        public ?string $trackingNumber = null
+        public ?string $tracking_number = null
     ) {
         //
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function fromRequest(array $data): static
     {
         return new self(
             search: $data['search'] ?? null,
             status: isset($data['status']) ? ShipmentStatus::from($data['status']) : null,
-            perPage: $data['per_page'] ?? 10,
+            per_page: $data['per_page'] ?? 10,
             weight: $data['weight'] ?? null,
-            trackingNumber: $data['tracking_number'] ?? null
+            tracking_number: $data['tracking_number'] ?? null
         );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function toArray(): array
     {
         return [
             'search' => $this->search,
             'status' => $this->status,
-            'perPage' => $this->perPage,
+            'per_page' => $this->per_page,
             'weight' => $this->weight,
-            'trackingNumber' => $this->trackingNumber,
+            'tracking_number' => $this->tracking_number,
         ];
     }
 }
