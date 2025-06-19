@@ -18,7 +18,9 @@ class ShipmentFilterDTO extends FilterDTO
         public ?int $weight = null,
         public ?string $tracking_number = null
     ) {
-        $this->search = $this->searchStrReplace($this->search);
+        if ($this->search) {
+            $this->search = $this->searchStrReplace($this->search);
+        }
     }
 
     /**
