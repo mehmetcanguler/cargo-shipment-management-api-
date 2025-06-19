@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\Handler;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,9 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {})
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->render(function (\Throwable $exception, Request $request) {
+        $exceptions->render(function (Throwable $exception, Request $request) {
             if ($request->is('api/*')) {
-                return \App\Exceptions\Handler::handle($request, $exception);
+                return Handler::handle($request, $exception);
             }
         });
     })->create();

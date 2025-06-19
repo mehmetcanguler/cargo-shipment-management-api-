@@ -16,7 +16,7 @@ use App\ValueObjects\Dimensions;
 class ShipmentController extends Controller
 {
     public function __construct(
-        private ShipmentServiceInterface $shipmentService
+        private readonly ShipmentServiceInterface $shipmentService
     ) {}
 
     /**

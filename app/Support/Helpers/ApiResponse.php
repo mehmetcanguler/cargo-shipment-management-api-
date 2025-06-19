@@ -29,7 +29,7 @@ class ApiResponse
 
     public static function error(?string $message = null, int $statusCode = 400, array $errors = [])
     {
-        if (empty($errors)) {
+        if ($errors === []) {
             $errors = [$message];
         }
 

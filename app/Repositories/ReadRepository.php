@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\Repositories\ReadRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class ReadRepository implements ReadRepositoryInterface
 {
-    protected Model $model;
-
-    public function __construct(Model $model)
+    public function __construct(protected Model $model)
     {
-        $this->model = $model;
     }
 
-    public function all(): \Illuminate\Database\Eloquent\Collection
+    public function all(): Collection
     {
         return $this->model->all();
     }
@@ -37,21 +37,21 @@ abstract class ReadRepository implements ReadRepositoryInterface
         return $query->first();
     }
 
-    public function paginate(?callable $callback = null, int $per_page = 10): \Illuminate\Pagination\LengthAwarePaginator
+    public function paginate(?callable $callback = null, int $per_page = 10): LengthAwarePaginator
     {
         $query = $this->model->newQuery();
-        if ($callback) {
+        if ($callback !== null) {
             $callback($query);
         }
 
         return $query->paginate($per_page);
     }
 
-    public function query(?callable $callback = null): \Illuminate\Database\Eloquent\Builder
+    public function query(?callable $callback = null): Builder
     {
         $query = $this->model->newQuery();
 
-        if ($callback) {
+        if ($callback !== null) {
             $callback($query);
         }
 

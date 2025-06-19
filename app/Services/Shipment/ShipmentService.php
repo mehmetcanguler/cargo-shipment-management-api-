@@ -39,9 +39,11 @@ class ShipmentService extends BaseService implements ShipmentServiceInterface
                         ->orWhere('shipping_company', 'like', '%'.$filterDTO->search.'%');
                 });
             }
+
             if ($filterDTO->status) {
                 $query->where('status', $filterDTO->status);
             }
+
             if ($filterDTO->weight) {
                 $query->where('weight', $filterDTO->weight);
             }
@@ -49,6 +51,7 @@ class ShipmentService extends BaseService implements ShipmentServiceInterface
             if ($filterDTO->tracking_number) {
                 $query->where('tracking_number', $filterDTO->tracking_number);
             }
+
             $query->orderBy('created_at', 'desc');
         }, $filterDTO->per_page);
     }

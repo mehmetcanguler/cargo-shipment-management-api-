@@ -9,13 +9,13 @@ use App\Repositories\Shipment\ShipmentWriteRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ShipmentRepositoryTest extends TestCase
+final class ShipmentRepositoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected ShipmentReadRepository $readRepo;
+    private ShipmentReadRepository $readRepo;
 
-    protected ShipmentWriteRepository $writeRepo;
+    private ShipmentWriteRepository $writeRepo;
 
     protected function setUp(): void
     {

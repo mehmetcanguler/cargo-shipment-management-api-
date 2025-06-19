@@ -6,11 +6,8 @@ use App\Dtos\Contracts\BaseDataInterface;
 
 abstract class BaseDTO implements BaseDataInterface
 {
-    protected array $attributes = [];
-
-    public function __construct(array $attributes = [])
+    public function __construct(protected array $attributes = [])
     {
-        $this->attributes = $attributes;
     }
 
     public function get(string $key, $default = null)

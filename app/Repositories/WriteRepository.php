@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class WriteRepository implements WriteRepositoryInterface
 {
-    protected Model $model;
-
-    public function __construct(Model $model)
+    public function __construct(protected Model $model)
     {
-        $this->model = $model;
     }
 
     public function add(array $data): Model

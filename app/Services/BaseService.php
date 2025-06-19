@@ -13,16 +13,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaseService implements ServiceInterface
 {
-    protected ReadRepositoryInterface $readRepository;
-
-    protected WriteRepositoryInterface $writeRepository;
-
-    public function __construct(
-        ReadRepositoryInterface $readRepository,
-        WriteRepositoryInterface $writeRepository
-    ) {
-        $this->readRepository = $readRepository;
-        $this->writeRepository = $writeRepository;
+    public function __construct(protected ReadRepositoryInterface $readRepository, protected WriteRepositoryInterface $writeRepository)
+    {
     }
 
     public function getAll(FilterDTO $filterDTO): LengthAwarePaginator
@@ -35,7 +27,7 @@ class BaseService implements ServiceInterface
     public function getById(int|string $id): ?Model
     {
         $model = $this->readRepository->find($id);
-        if (! $model) {
+        if (!$model instanceof Model) {
             throw new ModelNotFoundException('Model not found');
         }
 
@@ -51,7 +43,7 @@ class BaseService implements ServiceInterface
     {
         $model = $this->getById($id);
 
-        if (! $model) {
+        if (!$model instanceof Model) {
             return null;
         }
 
@@ -62,7 +54,7 @@ class BaseService implements ServiceInterface
     {
         $model = $this->getById($id);
 
-        if (! $model) {
+        if (!$model instanceof Model) {
             return false;
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Contracts\Repositories\User\UserReadRepositoryInterface;
 use App\Contracts\Services\Auth\AuthServiceInterface;
 use App\Dtos\Auth\LoginDTO;
@@ -10,11 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService implements AuthServiceInterface
 {
-    protected UserReadRepositoryInterface $userReadRepository;
-
-    public function __construct(UserReadRepositoryInterface $userReadRepository)
+    public function __construct(protected UserReadRepositoryInterface $userReadRepository)
     {
-        $this->userReadRepository = $userReadRepository;
     }
 
     public function login(LoginDTO $dto): array
@@ -35,7 +33,7 @@ class AuthService implements AuthServiceInterface
     {
         $user = $this->userReadRepository->find($userId);
 
-        if (! $user) {
+        if (!$user instanceof Model) {
             return false;
         }
 

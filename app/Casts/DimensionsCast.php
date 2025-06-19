@@ -15,7 +15,7 @@ class DimensionsCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        return new Dimensions(...json_decode($value, true));
+        return new Dimensions(...json_decode((string) $value, true));
     }
 
     /**
